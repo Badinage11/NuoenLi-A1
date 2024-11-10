@@ -6,9 +6,7 @@ public class HealthProfessional {
 
         // Default constructor
         public HealthProfessional() {
-            this.id = 0;
-            this.name = "Unknown";
-            this.specialization = "General";
+
         }
 
         // Constructor that initializes all instance variables
