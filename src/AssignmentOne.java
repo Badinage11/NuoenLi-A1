@@ -6,8 +6,8 @@ public class AssignmentOne {
 
         // Creating three General Practitioner objects
         HealthProfessional gp1 = new GeneralPractitioner(1, "Lei Jun", "Surgery", 10);
-        HealthProfessional gp2 = new GeneralPractitioner(2, "Wang Fang", "Pediatrics", 15);
-        GeneralPractitioner gp3 = new GeneralPractitioner(3, "Li Lei", "Internal Medicine", 8);
+        HealthProfessional gp2 = new GeneralPractitioner(2, "Wang Fang", "Pediatrics", 25);
+        GeneralPractitioner gp3 = new GeneralPractitioner(3, "Li Lei", "Internal Medicine", 15);
 
         // Creating two Specialist objects
         HealthProfessional sp1 = new Psychologist(20, "Zhang San", "Traditional Chinese Medical Science", true);
@@ -38,16 +38,16 @@ public class AssignmentOne {
         System.out.println("Part 5 – Collection of appointments");
 
         // Make 2 appointments with general practitioners
-        Patient patient1 = new Patient("Huang Lin", "15851521771", 45, "Male");
+        Patient patient1 = new Patient("Huang Lin", "15751521771", 45, "Male");
         Patient patient2 = new Patient("Zhao Si", "15623478965", 23, "Female");
-        createAppointment(appointments,patient1, "08:00", gp1);
-        createAppointment(appointments,patient2, "11:23", gp2);
+        createAppointment(appointments,patient1, "09:00", gp1);
+        createAppointment(appointments,patient2, "11:25", gp2);
 
         // Make another 2 appointments with psychologists
-        Patient patient3 = new Patient("Bob Johnson", "345-678-9012", 50, "Male");
-        Patient patient4 = new Patient("Alice Brown", "456-789-0123", 42, "Female");
-        createAppointment(appointments,patient3, "14:00", sp1);
-        createAppointment(appointments,patient4, "15:30", sp2);
+        Patient patient3 = new Patient("Tao Zhe", "13611572216", 53, "Male");
+        Patient patient4 = new Patient("Wu Bai", "13442041879", 47, "Female");
+        createAppointment(appointments,patient3, "16:00", sp1);
+        createAppointment(appointments,patient4, "18:30", sp2);
 
 
         // Print existing appointments
@@ -64,6 +64,7 @@ public class AssignmentOne {
         System.out.println("------------------------------");
 
 }
+    //Method for creating an appointment
     public static void createAppointment(ArrayList<Appointment> Appointment,  Patient patient, String preferredTimeSlot, HealthProfessional doctor) {
         if (patient != null && preferredTimeSlot != null && doctor != null) {
             Appointment newAppointment = new Appointment(patient, preferredTimeSlot, doctor);
@@ -74,6 +75,7 @@ public class AssignmentOne {
         }
     }
 
+    //Method for printing existing appointments
     public static void printExistingAppointments(ArrayList<Appointment> Appointment) {
         if (Appointment.isEmpty()) {
             System.out.println("No existing appointments.");
@@ -85,6 +87,7 @@ public class AssignmentOne {
         }
     }
 
+    //Method to cancel appointment
     public static void cancelBooking(ArrayList<Appointment> Appointment,String mobilePhone) {
         boolean found = false;
         for (int i = 0; i < Appointment.size(); i++) {
