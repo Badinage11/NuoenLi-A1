@@ -34,20 +34,20 @@ public class AssignmentOne {
 
 
         // Part 5 – Collection of appointments
-         ArrayList<Appointment> appointments = new ArrayList<>();
+        ArrayList<Appointment> appointments = new ArrayList<>();
         System.out.println("Part 5 – Collection of appointments");
 
         // Make 2 appointments with general practitioners
         Patient patient1 = new Patient("Huang Lin", "15751521771", 45, "Male");
         Patient patient2 = new Patient("Zhao Si", "15623478965", 23, "Female");
-        createAppointment(appointments,patient1, "09:00", gp1);
-        createAppointment(appointments,patient2, "11:25", gp2);
+        createAppointment(appointments, patient1, "09:00", gp1);
+        createAppointment(appointments, patient2, "11:25", gp2);
 
         // Make another 2 appointments with psychologists
         Patient patient3 = new Patient("Tao Zhe", "13611572216", 53, "Male");
         Patient patient4 = new Patient("Wu Bai", "13442041879", 47, "Female");
-        createAppointment(appointments,patient3, "16:00", sp1);
-        createAppointment(appointments,patient4, "18:30", sp2);
+        createAppointment(appointments, patient3, "16:00", sp1);
+        createAppointment(appointments, patient4, "18:30", sp2);
 
 
         // Print existing appointments
@@ -55,52 +55,45 @@ public class AssignmentOne {
 
         // Cancel one of the existing appointments
         System.out.println("\nCancelling an appointment:");
-        cancelBooking(appointments,"234-567-8901");
+        cancelAppointment(appointments, "13442041879");
 
         // Print again existing appointments
         System.out.println("\nUpdated Appointments:");
-        printExistingAppointments(appointments);
+        printAppointments(appointments);
 
         System.out.println("------------------------------");
+    }
+
+    // Method for creating an appointment
+    public static void createAppointment(ArrayList<Appointment> appointments, Patient patient, String timeSlot, HealthProfessional doctor) {
+        if (patient == null || timeSlot == null || doctor == null) {
+            System.out.println("Error: Cannot create appointment. Missing information.");
+            return;
+        }
+        appointments.add(new Appointment(patient, timeSlot, doctor));
+        System.out.println("Appointment created successfully.");
+    }
+
+    public static void printAppointments(ArrayList<Appointment> appointments) {
+        if (appointments.isEmpty()) {
+            System.out.println("No existing appointments.");
+            return;
+        }
+        for (Appointment appt : appointments) {
+            appt.printAppointmentDetails();
+            System.out.println("------------------------------");
+        }
+    }
+
+    public static void cancelAppointment(ArrayList<Appointment> appointments, String mobilePhone) {
+        for (int i = 0; i < appointments.size(); i++) {
+            if (appointments.get(i).getPatient().getMobilePhone().equals(mobilePhone)) {
+                appointments.remove(i);
+                System.out.println("Appointment cancelled successfully.");
+                return;
+            }
+        }
+        System.out.println("Error: No appointment found for the given mobile phone number.");
+    }
 
 }
-    //Method for creating an appointment
-    public static void createAppointment(ArrayList<Appointment> Appointment,  Patient patient, String preferredTimeSlot, HealthProfessional doctor) {
-        if (patient != null && preferredTimeSlot != null && doctor != null) {
-            Appointment newAppointment = new Appointment(patient, preferredTimeSlot, doctor);
-            Appointment.add(newAppointment);
-            System.out.println("Appointment created successfully.");
-        } else {
-            System.out.println("Error: Cannot create appointment. Missing information.");
-        }
-    }
-
-    //Method for printing existing appointments
-    public static void printExistingAppointments(ArrayList<Appointment> Appointment) {
-        if (Appointment.isEmpty()) {
-            System.out.println("No existing appointments.");
-        } else {
-            for (Appointment appointment : Appointment) {
-                appointment.printAppointmentDetails();
-                System.out.println("------------------------------");
-            }
-        }
-    }
-
-    //Method to cancel appointment
-    public static void cancelBooking(ArrayList<Appointment> Appointment,String mobilePhone) {
-        boolean found = false;
-        for (int i = 0; i < Appointment.size(); i++) {
-            if (Appointment.get(i).getPatient().getMobilePhone().equals(mobilePhone)) {
-                Appointment.remove(i);
-                System.out.println("Appointment cancelled successfully.");
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            System.out.println("Error: No appointment found for the given mobile phone number.");
-        }
-    }
-    }
-
